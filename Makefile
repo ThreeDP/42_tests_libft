@@ -1,12 +1,12 @@
 PROGS = ft_isalpha
-PATH = ../
-$(PATH)_LIB = libft.a
+DIR = ../
+$(DIR)_LIB = libft.a
 FLAGS = -Wall -Werror -Wextra
 
 all: $(PROGS)
 
 $(PROGS):
-	gcc $(FLAGS) -I $($(PATH)_LIB) -o $@
+	gcc $(FLAGS) -I $($(DIR)_LIB) -o $@
 	@echo
 	@echo INICIANDO TESTE DE...
 	@echo $@
@@ -14,13 +14,13 @@ $(PROGS):
 	./$@
 
 create:
-	@cd $(PATH) && $(MAKE)
+	@cd $(DIR) && $(MAKE)
 
 norm:
-	@cd $(PATH) && $(MAKE) $@
+	@cd $(DIR) && $(MAKE) $@
 
 clean: 
-	@cd $(PATH) && $(MAKE) $@
+	@cd $(DIR) && $(MAKE) $@
 
 fclean: clean
 	rm -f $(PROGS)
