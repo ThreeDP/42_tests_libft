@@ -7,6 +7,11 @@ all: $(PROGS)
 
 $(PROGS):
 	gcc $(FLAGS) -I $($(PATH)_LIB) -o $@
+	@echo
+	@echo INICIANDO TESTE DE...
+	@echo $@
+	@echo
+	./$@
 
 create:
 	@cd $(PATH) && $(MAKE)
