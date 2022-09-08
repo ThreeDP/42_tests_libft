@@ -13,7 +13,7 @@ $(PROGS): $(SRCS:.c=.o) $(addprefix $(DIR), $(LIB))
 	@echo INICIANDO TESTE DE...
 	@echo $@
 	@echo
-	./$@
+	./$@.exec
 
 %.o: %.c $(HEADERS)
 	cc $(FLAGS) -o $@ -c $<
