@@ -8,7 +8,7 @@ FLAGS = -Wall -Werror -Wextra
 all: $(PROGS)
 
 $(PROGS): $(SRCS:.c=.o) $(addprefix $(DIR), $(LIB))
-	gcc $(FLAGS) $@_test.o -I $(DIR) -L $(DIR) -lft -o $@
+	gcc $(FLAGS) $@_test.o -I $(DIR) -L $(DIR) -lft -o $@.exec
 	@echo
 	@echo INICIANDO TESTE DE...
 	@echo $@
