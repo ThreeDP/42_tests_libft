@@ -1,34 +1,38 @@
-PROGS = ft_isalpha
-SRCS := $(PROGS)_test.c
+PROGS = ft_isalpha \
+		ft_isdigit
+SRCS =	ft_isalpha_test.c \
+		ft_isdigit_test.c
 DIR = ../
 LIB = libft.a
 HEADERS = test.h
 FLAGS = -Wall -Werror -Wextra
 
-all: $(PROGS)
+all: $(SRCS:.c=.o) $(PROGS)
 
-$(PROGS): $(SRCS:.c=.o) $(addprefix $(DIR), $(LIB))
-	gcc $(FLAGS) $@_test.o -I $(DIR) -L $(DIR) -lft -o $@.exec
+$(PROGS): $(addprefix $(DIR), $(LIB))
+	gcc $(FLAGS) $@_test.o -I $(DIR) -L $(DIR) -lft -o $@
 	@echo
 	@echo INICIANDO TESTE DE...
 	@echo $@
 	@echo
-	./$@.exec
+	./$@
 
-%.o: %.c $(HEADERS)
-	cc $(FLAGS) -o $@ -c $<
+%.o: %.c
+	cc -o $@ -c $< $(FLAGS)
 
 create:
 	@cd $(DIR) && $(MAKE)
 
 norm:
-	@cd $(DIR) && norminette
+	@cd $(DIR) && $(MAKE) $@
 
 clean:
 	rm -f $(SRCS:.c=.o)
 	@cd $(DIR) && $(MAKE) $@
 
-fclean: clean
+fclean:
 	rm -f $(PROGS)
+	@cd $(DIR) && $(MAKE) $@
+
 
 re: fclean all
