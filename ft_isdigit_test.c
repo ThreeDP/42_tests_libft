@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:19:50 by coder             #+#    #+#             */
-/*   Updated: 2022/09/12 21:54:35 by coder            ###   ########.fr       */
+/*   Updated: 2022/09/16 18:49:46 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,13 @@ void	imprimir(char c, int *line)
 	printf("Valor Recebido: "PRINTYEL("%d")"\n", result_my_f);
 	if (result_lib == result_my_f)
 		printf(PRINTGRN("SUCESSO!!"));
-	else 
-		printf(PRINTRED("xxxERROxxx"));
+	else
+	{
+		if (result_lib > 0 && result_lib > 0)
+			printf(PRINTGRN("SUCESSO!!"));
+		else
+			printf(PRINTRED("xxxERROxxx"));
+	}
 	printf("\n*=========================* Teste: %d", *line);
 	*line += 1;
 }

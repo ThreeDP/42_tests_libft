@@ -2,6 +2,7 @@
 # define __TEST_H__
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 #include "../libft.h"
 
 #define PRINTRED(x)  "\x1B[31m"x"\x1B[37m"

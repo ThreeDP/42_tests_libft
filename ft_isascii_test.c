@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:13:45 by coder             #+#    #+#             */
-/*   Updated: 2022/09/16 18:24:52 by coder            ###   ########.fr       */
+/*   Updated: 2022/09/16 18:36:56 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	imprimir(int c, int *line)
 		printf(PRINTGRN("SUCESSO!!"));
 	else
 	{
-		if (result_lib > 0 || result_lib > 0)
+		if (result_lib > 0 && result_lib > 0)
 			printf(PRINTGRN("SUCESSO!!"));
 		else
 			printf(PRINTRED("xxxERROxxx"));

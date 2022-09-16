@@ -1,10 +1,8 @@
-PROGS = ft_isalpha \
-		ft_isdigit \
-		ft_isalnum
+PROGS = ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint \
+		ft_strlen
 #		ft_memcpy
-SRCS =	ft_isalpha_test.c \
-		ft_isdigit_test.c \
-		ft_isalnum_test.c
+SRCS =	ft_isalpha_test.c ft_isdigit_test.c ft_isalnum_test.c ft_isascii_test.c ft_isprint_test.c \
+		ft_strlen_test.c
 #		ft_memcpy_test.c
 OBJS := $(SRCS:.c=.o)
 DIR = ../
@@ -31,11 +29,13 @@ create:
 norm:
 	@cd $(DIR) && $(MAKE) $@
 
-clean:
+cleann:
 	@rm -f $(SRCS:.c=.o)
+
+clean:
 	@cd $(DIR) && $(MAKE) $@
 
-fclean:
+fclean: cleann
 	@rm -f $(PROGS)
 	@cd $(DIR) && $(MAKE) $@
 

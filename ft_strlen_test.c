@@ -1,18 +1,16 @@
 
 #include "test.h"
 
-void	imprimir(char c, int *line)
+void	imprimir(char *str, int *line)
 {
-	int char_int;
-	int result_my_f;
-	int result_lib;
+	size_t	result_my_f;
+	size_t	result_lib;
 
-	char_int = c;
-	result_lib = isdigit(char_int);
-	result_my_f = ft_isdigit(char_int);
-	printf("\nA letra "PRINTYEL("'%c'")" é um digito?\n", c);
-	printf("Valor esperado é de: "PRINTYEL("%d")"\n", result_lib);
-	printf("Valor Recebido: "PRINTYEL("%d")"\n", result_my_f);
+	result_lib = strlen(str);
+	result_my_f = ft_strlen(str);
+	printf("\nTamanho da String "PRINTYEL("'%s'")" \n", str);
+	printf("Valor esperado é de: "PRINTYEL("%zu")"\n", result_lib);
+	printf("Valor Recebido: "PRINTYEL("%zu")"\n", result_my_f);
 	if (result_lib == result_my_f)
 		printf(PRINTGRN("SUCESSO!!"));
 	else 
@@ -26,19 +24,10 @@ void	testar()
 	int line;
 
 	line = 1;
-	imprimir('A', &line);
-	imprimir('s', &line);
-	imprimir('0', &line);
-	imprimir('t', &line);
-	imprimir('V', &line);
-	imprimir('X', &line);
-	imprimir('*', &line);
-	imprimir('\t', &line);
-	imprimir('%', &line);
-	imprimir('z', &line);
-	imprimir('a', &line);
-	imprimir('x', &line);
-	imprimir('\n', &line);
+	imprimir("Abacate", &line);
+	imprimir("Serviço", &line);
+	imprimir("\0", &line);
+	imprimir("", &line);
 }
 
 int main()
