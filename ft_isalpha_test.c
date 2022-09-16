@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 19:19:50 by coder             #+#    #+#             */
-/*   Updated: 2022/09/08 21:06:36 by coder            ###   ########.fr       */
+/*   Updated: 2022/09/16 16:28:01 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	imprimir(char c, int *line)
 	char_int = c;
 	result_lib = isalpha(char_int);
 	result_my_f = ft_isalpha(char_int);
-	printf("\nA letra "PRINTYEL("'%c'")" é alfanumérico?\n", c);
+	printf("\nA letra "PRINTYEL("'%c'")" é um letra?\n", c);
 	printf("Valor esperado é de: "PRINTYEL("%d")"\n", result_lib);
 	printf("Valor Recebido: "PRINTYEL("%d")"\n", result_my_f);
 	if (result_lib == result_my_f)
