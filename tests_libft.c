@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "minunit.h"
 #include "../libft.h"
-/*
+
 MU_TEST_SUITE(test_isdigit_entering_c_returns_false)
 {
 	//ARRANGE
@@ -137,7 +137,7 @@ MU_TEST_SUITE(test_strlcpy_entering_mochida_rapdos_0_do_not_modify_dst_and_retur
 	mu_assert_int_eq(expected_result, actual_result);
 	mu_assert_string_eq(expected_dst, dst);
 }
-
+/*
 MU_TEST_SUITE(test_strchr_look_up_non_existing_character_in_string_should_return_NULL)
 {
 	//ARRANGE
@@ -460,27 +460,133 @@ MU_TEST_SUITE(test_enter_caracter_asterisk_in_func_isprint)
 	mu_assert(returned_result > 0, "the returned result should be TRUE");
 }
 
+MU_TEST_SUITE(test_enter_a_string_empty_in_func_strlen)
+{
+	//ARRANGE
+	char	string[] = "";
+	int		expected_result = 0;
+	int		returned_result;
+
+	//ACT
+	returned_result = ft_strlen(string);
+
+	//ASSERT
+	mu_assert_int_eq(expected_result, returned_result);
+}
+
+MU_TEST_SUITE(test_enter_a_string_with_seven_characters_in_func_strlen)
+{
+	//ARRANGE
+	char	string[] = "abacate";
+	int		expected_result = 7;
+	int		returned_result;
+
+	//ACT
+	returned_result = ft_strlen(string);
+
+	//ASSERT
+	mu_assert_int_eq(expected_result, returned_result);
+}
+
+MU_TEST_SUITE(test_enter_a_string_with_a_NULL_character_in_func_strlen)
+{
+	//ARRANGE
+	char	string[] = "\0";
+	int		expected_result = 0;
+	int		returned_result;
+
+	//ACT
+	returned_result = ft_strlen(string);
+
+	//ASSERT
+	mu_assert_int_eq(expected_result, returned_result);
+}
+
+MU_TEST_SUITE(test_func_memset_fill_5_bytes_of_a_string_with_7_bytes_array_type_char)
+{
+	//ARRANGE
+	char	string[] = "abacate";
+	char	expected_result[] = "*****te";
+	int		character = 42;
+	size_t	position = 5;
+	char	*returned_result;
+
+	//ACT
+	returned_result = memset(string, character, position);
+
+	//ASSERT
+	mu_assert_string_eq(expected_result, returned_result);
+}
+
+MU_TEST_SUITE(test_func_memset_fill_8_bytes_of_a_string_with_7_bytes_array_type_char)
+{
+	//ARRANGE
+	char	string[] = "abacate";
+	char	expected_result[] = "********";
+	int		character = 42;
+	size_t	position = 8;
+	char	*returned_result;
+
+	//ACT
+	returned_result = memset(string, character, position);
+
+	//ASSERT
+	mu_assert_string_eq(expected_result, returned_result);
+}
+
+MU_TEST_SUITE(test_func_memset_fill_5_bytes_of_a_array_int_with_7_bytes)
+{
+	//ARRANGE
+	int		array[] = {1, 2, 3, 4, 5, 6, 7};
+	int		expected_result[] = {0, 0, 0, 0, 0, 6, 7};
+	int		character = 0;
+	size_t	position = (5 * sizeof(int));
+	int		*returned_result;
+	size_t	i = 0;
+
+	//ACT
+	returned_result = memset(array, character, position);
+
+	//ASSERT
+	while (i < position)
+	{
+		mu_assert(expected_result[i] == array[i], "The array of ints is not equal");
+		i++;
+	}
+}
+
 MU_TEST_SUITE(test_suite) {
+	// memset tests
+	MU_RUN_TEST(test_func_memset_fill_5_bytes_of_a_string_with_7_bytes_array_type_char);
+	MU_RUN_TEST(test_func_memset_fill_8_bytes_of_a_string_with_7_bytes_array_type_char);
+	MU_RUN_TEST(test_func_memset_fill_5_bytes_of_a_array_int_with_7_bytes);
+	// strlen tests
+	MU_RUN_TEST(test_enter_a_string_empty_in_func_strlen);
+	MU_RUN_TEST(test_enter_a_string_with_seven_characters_in_func_strlen);
+	MU_RUN_TEST(test_enter_a_string_with_a_NULL_character_in_func_strlen);
+	// isprint tests
+	MU_RUN_TEST(test_enter_caracter_new_line_in_func_isprint);
+	MU_RUN_TEST(test_enter_caracter_space_in_func_isprint);
+	MU_RUN_TEST(test_enter_caracter_NULL_in_func_isprint);
+	MU_RUN_TEST(test_enter_caracter_asterisk_in_func_isprint);
+	// isdigit tests
+	MU_RUN_TEST(test_isdigit_entering_c_returns_false);
 	// isalpha tests
 	MU_RUN_TEST(test_if_enter_the_letter_a_lowercase_in_isalpha_func_result_in_true);
 	MU_RUN_TEST(test_if_enter_the_letter_A_uppercase_in_isalpha_func_result_in_true);
 	MU_RUN_TEST(test_if_enter_the_digit_0_in_isalpha_func_result_in_false);
 	MU_RUN_TEST(test_if_enter_the_character_DEL_in_isalpha_func_result_in_false);
 	MU_RUN_TEST(test_if_enter_the_character_asterisk_in_isalpha_func_result_in_false);
-	// isprint tests
-	MU_RUN_TEST(test_enter_caracter_new_line_in_func_isprint);
-	MU_RUN_TEST(test_enter_caracter_space_in_func_isprint);
-	MU_RUN_TEST(test_enter_caracter_NULL_in_func_isprint);
-	MU_RUN_TEST(test_enter_caracter_asterisk_in_func_isprint);
-	/*MU_RUN_TEST(test_strlcpy_entering_mochida_rapdos_0_do_not_modify_dst_and_returns_6);
+	// strlcpy tests
+	MU_RUN_TEST(test_strlcpy_entering_mochida_rapdos_0_do_not_modify_dst_and_returns_6);
 	MU_RUN_TEST(test_strlcpy_entering_lu_la_minus_1_set_dst_as_la_and_returns_2);
 	MU_RUN_TEST(test_strlcpy_entering_papelada_boiada_9_keep_dst7_as_a);
 	MU_RUN_TEST(test_strlcpy_entering_ai_oi_2_set_dst_as_o_and_returns_2);
 	MU_RUN_TEST(test_strlcpy_entering_papel_boiada_7_set_dst_as_boiada_and_returns_6);
 	MU_RUN_TEST(test_strlcpy_entering_ah_boi_3_set_dst_as_bo_and_returns_3);
 	MU_RUN_TEST(test_strlcpy_entering_ah_oi_3_set_dst_as_oi_and_returns_2);
-	MU_RUN_TEST(test_isdigit_entering_c_returns_false);
-	MU_RUN_TEST(test_strchr_look_up_non_existing_character_in_string_should_return_NULL);
+	
+	/*MU_RUN_TEST(test_strchr_look_up_non_existing_character_in_string_should_return_NULL);
 	MU_RUN_TEST(test_strchr_look_up_existing_character_in_string_should_return_its_address);
 	MU_RUN_TEST(test_strchr_look_up_null_character_in_string_should_return_the_terminating_zero_address);
 	MU_RUN_TEST(test_strchr_look_up_character_in_empty_string_should_return_null);
