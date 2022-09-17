@@ -506,13 +506,13 @@ MU_TEST_SUITE(test_func_memset_fill_5_bytes_of_a_string_with_7_bytes_array_type_
 {
 	//ARRANGE
 	char	string[] = "abacate";
-	char	expected_result[] = "*****te";
+	char	*expected_result = "*****te";
 	int		character = 42;
 	size_t	position = 5;
 	char	*returned_result;
 
 	//ACT
-	returned_result = memset(string, character, position);
+	returned_result = ft_memset(string, character, position);
 
 	//ASSERT
 	mu_assert_string_eq(expected_result, returned_result);
@@ -550,7 +550,7 @@ MU_TEST_SUITE(test_func_memset_fill_5_bytes_of_a_array_int_with_7_bytes)
 	//ASSERT
 	while (i < position)
 	{
-		mu_assert(expected_result[i] == array[i], "The array of ints is not equal");
+		mu_assert_int_eq(expected_result[i], array[i]);
 		i++;
 	}
 }
