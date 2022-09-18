@@ -518,34 +518,34 @@ MU_TEST_SUITE(test_func_memset_fill_5_bytes_of_a_string_with_7_bytes_array_type_
 	mu_assert_string_eq(expected_result, returned_result);
 }
 
-MU_TEST_SUITE(test_func_memset_fill_8_bytes_of_a_string_with_7_bytes_array_type_char)
+MU_TEST_SUITE(test_func_memset_fill_7_bytes_of_a_string_with_7_bytes_array_type_char)
 {
 	//ARRANGE
 	char	string[] = "abacate";
-	char	expected_result[] = "********";
+	char	expected_result[] = "*******";
 	int		character = 42;
-	size_t	position = 8;
+	size_t	position = 7;
 	char	*returned_result;
 
 	//ACT
-	returned_result = memset(string, character, position);
+	returned_result = ft_memset(string, character, position);
 
 	//ASSERT
 	mu_assert_string_eq(expected_result, returned_result);
 }
 
-MU_TEST_SUITE(test_func_memset_fill_5_bytes_of_a_array_int_with_7_bytes)
+MU_TEST_SUITE(test_func_memset_fill_5_bytes_of_a_array_int_with_28_bytes)
 {
 	//ARRANGE
 	int		array[] = {1, 2, 3, 4, 5, 6, 7};
 	int		expected_result[] = {0, 0, 0, 0, 0, 6, 7};
 	int		character = 0;
-	size_t	position = (5 * sizeof(int));
+	size_t	position = 5;
 	int		*returned_result;
 	size_t	i = 0;
 
 	//ACT
-	returned_result = memset(array, character, position);
+	returned_result = ft_memset(array, character, sizeof(int) * position);
 
 	//ASSERT
 	while (i < position)
@@ -555,11 +555,114 @@ MU_TEST_SUITE(test_func_memset_fill_5_bytes_of_a_array_int_with_7_bytes)
 	}
 }
 
+MU_TEST_SUITE(test_func_memset_fill_0_bytes_of_a_array_int_with_28_bytes)
+{
+	//ARRANGE
+	int		array[] = {1, 2, 3, 4, 5, 6, 7};
+	int		expected_result[] = {0, 0, 0, 0, 0, 6, 7};
+	int		character = 0;
+	size_t	position = 0;
+	int		*returned_result;
+	size_t	i = 0;
+
+	//ACT
+	returned_result = ft_memset(array, character, sizeof(int) * position);
+
+	//ASSERT
+	while (i < position)
+	{
+		mu_assert_int_eq(expected_result[i], array[i]);
+		i++;
+	}
+}
+
+MU_TEST_SUITE(test_func_bzero_fill_5_positions_in_a_string_of_7_bytes)
+{
+	//ARRANGE
+	char	string[] = "abacate";
+	char	expected_result[] = "\0\0\0\0\0te";
+	size_t	position = 5;
+	size_t	i = 0;
+
+	//ACT
+	ft_bzero(string, position);
+
+	//ASSERT
+	while (i < 7)
+	{
+		mu_assert_int_eq(expected_result[i], string[i]);
+		i++;
+	}
+}
+
+MU_TEST_SUITE(test_func_bzero_fill_7_positions_in_a_string_of_7_bytes)
+{
+	//ARRANGE
+	char	string[] = "abacate";
+	char	expected_result[] = "\0\0\0\0\0\0\0";
+	size_t	position = 7;
+	size_t	i = 0;
+
+	//ACT
+	ft_bzero(string, position);
+
+	//ASSERT
+	while (i < 7)
+	{
+		mu_assert_int_eq(expected_result[i], string[i]);
+		i++;
+	}
+}
+
+MU_TEST_SUITE(test_func_bzero_fill_7_positions_in_a_array_int_with_28_bytes)
+{
+	//ARRANGE
+	int		array[] = {1, 2, 3, 4, 5, 6, 7};
+	char	expected_result[] = {0, 0, 0, 0, 0, 0, 0};
+	size_t	position = 7;
+	size_t	i = 0;
+
+	//ACT
+	ft_bzero(array, sizeof(int) * position);
+
+	//ASSERT
+	while (i < 7)
+	{
+		mu_assert_int_eq(expected_result[i], array[i]);
+		i++;
+	}
+}
+
+MU_TEST_SUITE(test_func_bzero_fill_0_positions_in_a_array_int_with_28_bytes)
+{
+	//ARRANGE
+	int		array[] = {1, 2, 3, 4, 5, 6, 7};
+	char	expected_result[] = {1, 2, 3, 4, 5, 6, 7};
+	size_t	position = 0;
+	size_t	i = 0;
+
+	//ACT
+	ft_bzero(array, sizeof(int) * position);
+
+	//ASSERT
+	while (i < 7)
+	{
+		mu_assert_int_eq(expected_result[i], array[i]);
+		i++;
+	}
+}
+
 MU_TEST_SUITE(test_suite) {
+	// bzero tests
+	MU_RUN_TEST(test_func_bzero_fill_5_positions_in_a_string_of_7_bytes);
+	MU_RUN_TEST(test_func_bzero_fill_7_positions_in_a_string_of_7_bytes);
+	MU_RUN_TEST(test_func_bzero_fill_7_positions_in_a_array_int_with_28_bytes);
+	MU_RUN_TEST(test_func_bzero_fill_0_positions_in_a_array_int_with_28_bytes);
 	// memset tests
 	MU_RUN_TEST(test_func_memset_fill_5_bytes_of_a_string_with_7_bytes_array_type_char);
-	MU_RUN_TEST(test_func_memset_fill_8_bytes_of_a_string_with_7_bytes_array_type_char);
-	MU_RUN_TEST(test_func_memset_fill_5_bytes_of_a_array_int_with_7_bytes);
+	MU_RUN_TEST(test_func_memset_fill_7_bytes_of_a_string_with_7_bytes_array_type_char);
+	MU_RUN_TEST(test_func_memset_fill_5_bytes_of_a_array_int_with_28_bytes);
+	MU_RUN_TEST(test_func_memset_fill_0_bytes_of_a_array_int_with_28_bytes);
 	// strlen tests
 	MU_RUN_TEST(test_enter_a_string_empty_in_func_strlen);
 	MU_RUN_TEST(test_enter_a_string_with_seven_characters_in_func_strlen);
