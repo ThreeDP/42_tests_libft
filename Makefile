@@ -1,4 +1,4 @@
-DIR = ../src
+DIR = ../
 LIB = libft.a
 SRCS = tests_libft.c
 HEADERS = minunit.h
