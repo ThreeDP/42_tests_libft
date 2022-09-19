@@ -27,3 +27,12 @@ fclean: cleann
 	@cd $(DIR) && $(MAKE) $@
 
 re: fclean all
+
+create:
+	@cd $(DIR) && $(MAKE)
+
+ft_inserting_sorting: create
+	cc -o ft_inserting_sorting.o -c ft_inserting_sorting.c
+	gcc ft_inserting_sorting.o -I $(DIR) -L $(DIR) -lft -o in_sor
+	./in_sor
+
