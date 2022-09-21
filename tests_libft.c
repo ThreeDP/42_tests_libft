@@ -1231,7 +1231,7 @@ MU_TEST_SUITE(test_strnstr_passing_a_little_empty_string_to_big_Foo_Bar_Baz_with
 	char	*actual_result;
 
 	//ACT
-	printf("\n%s\n%s\n", actual_result, expected_result);
+	actual_result = ft_strnstr(big, little, size);
 
 	//ASSERT
 	mu_assert(expected_result == actual_result, "expected-result should be the same address");
@@ -1247,13 +1247,119 @@ MU_TEST_SUITE(test_strnstr_passing_a_little_string_Bar_bigger_then_string_big_Fo
 	char	*actual_result;
 
 	//ACT
-	printf("\n%s\n%s\n", actual_result, expected_result);
+	actual_result = ft_strnstr(big, little, size);
 
 	//ASSERT
 	mu_assert(expected_result == actual_result, "expected-result should be the same address");
 }
 
+MU_TEST_SUITE(test_atoi_passing_a_character_0_should_be_a_int_zero)
+{
+	//ARRANGE
+	char	str[] = "0";
+	int		expected_result = 0;
+	int		actual_result;
+
+	//ACT
+	actual_result = ft_atoi(str);
+
+	//ASSERT
+	mu_assert_int_eq(expected_result, actual_result);
+}
+
+MU_TEST_SUITE(test_atoi_passing_a_string_123_should_be_123_int)
+{
+	//ARRANGE
+	char	str[] = "123";
+	int		expected_result = 123;
+	int		actual_result;
+
+	//ACT
+	actual_result = ft_atoi(str);
+
+	//ASSERT
+	mu_assert_int_eq(expected_result, actual_result);
+}
+
+MU_TEST_SUITE(test_atoi_passing_a_string_minus_123_should_be_minus_123_int)
+{
+	//ARRANGE
+	char	str[] = "-123";
+	int		expected_result = -123;
+	int		actual_result;
+
+	//ACT
+	actual_result = ft_atoi(str);
+
+	//ASSERT
+	mu_assert_int_eq(expected_result, actual_result);
+}
+
+MU_TEST_SUITE(test_atoi_passing_a_string_with_spaces_123_should_be_123_int)
+{
+	//ARRANGE
+	char	str[] = "     123";
+	int		expected_result = 123;
+	int		actual_result;
+
+	//ACT
+	actual_result = ft_atoi(str);
+
+	//ASSERT
+	mu_assert_int_eq(expected_result, actual_result);
+}
+
+MU_TEST_SUITE(test_atoi_passing_a_string_with_spaces_t123_should_be_zero)
+{
+	//ARRANGE
+	char	str[] = "     t123";
+	int		expected_result = 0;
+	int		actual_result;
+
+	//ACT
+	actual_result = ft_atoi(str);
+
+	//ASSERT
+	mu_assert_int_eq(expected_result, actual_result);
+}
+
+MU_TEST_SUITE(test_atoi_passing_a_string_with_MAX_POS_should_be_2147483647)
+{
+	//ARRANGE
+	char	str[] = "2147483647";
+	int		expected_result = ~(1<<31);
+	int		actual_result;
+
+	//ACT
+	actual_result = ft_atoi(str);
+
+	//ASSERT
+	mu_assert_int_eq(expected_result, actual_result);
+}
+
+MU_TEST_SUITE(test_atoi_passing_a_string_with_MAX_POS_should_be_minus_2147483648)
+{
+	//ARRANGE
+	char	str[] = "-2147483648";
+	int		expected_result = (1<<31);
+	int		actual_result;
+
+	//ACT
+	actual_result = ft_atoi(str);
+
+	//ASSERT
+	mu_assert_int_eq(expected_result, actual_result);
+}
+
 MU_TEST_SUITE(test_suite) {
+	// atoi tests
+	MU_RUN_TEST(test_atoi_passing_a_string_with_MAX_POS_should_be_minus_2147483648);
+	MU_RUN_TEST(test_atoi_passing_a_string_with_MAX_POS_should_be_2147483647);
+	MU_RUN_TEST(test_atoi_passing_a_string_with_spaces_t123_should_be_zero);
+	MU_RUN_TEST(test_atoi_passing_a_string_with_spaces_123_should_be_123_int);
+	MU_RUN_TEST(test_atoi_passing_a_string_minus_123_should_be_minus_123_int);
+	MU_RUN_TEST(test_atoi_passing_a_string_123_should_be_123_int);
+	MU_RUN_TEST(test_atoi_passing_a_character_0_should_be_a_int_zero);
 	// strnstr tests
 	MU_RUN_TEST(test_strnstr_passing_a_little_string_Bar_bigger_then_string_big_Fo_with_range_7_should_be_NULL);
 	MU_RUN_TEST(test_strnstr_passing_a_little_empty_string_to_big_Foo_Bar_Baz_with_range_12_should_be_big);
