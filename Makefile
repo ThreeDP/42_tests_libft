@@ -4,7 +4,7 @@ SRCS = tests_libft.c
 HEADERS = minunit.h
 FLAGS = -Wall -Werror -Wextra
 
-all: $(SRCS:.c=.o)
+all: $(SRCS:.c=.o) 
 	gcc $(FLAGS) tests_libft.o -I $(DIR) -L $(DIR) -lft -o run.exec
 	./run.exec
 
