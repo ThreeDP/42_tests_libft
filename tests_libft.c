@@ -1157,8 +1157,111 @@ MU_TEST_SUITE(test_strncmp_passing_two_strings_index_4_with_a_diff_inside_the_in
 	mu_assert_int_eq(expected_result, actual_result);
 }
 
+MU_TEST_SUITE(test_strncmp_passing_two_strings_equal_with_range_zero)
+{
+	//ARRANGE
+	char	s1[] = "LUA";
+	char	s2[] = "LUA";
+	size_t	size = 0;
+	int		expected_result = 0;
+	int		actual_result;
+
+	//ACT
+	actual_result = ft_strncmp(s1, s2, size);
+
+	//ASSERT
+	mu_assert_int_eq(expected_result, actual_result);
+}
+
+MU_TEST_SUITE(test_strnstr_passing_a_little_Bar_to_big_Foo_Bar_Baz_with_range_8_should_be_address_index_4)
+{
+	//ARRANGE
+	char	big[] = "Foo Bar Baz";
+	char	little[] = "Bar";
+	size_t	size = 8;
+	char	*expected_result = &big[4];
+	char	*actual_result;
+
+	//ACT
+	actual_result = ft_strnstr(big, little, size);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected-result should be the same address");
+}
+
+MU_TEST_SUITE(test_strnstr_passing_a_little_Bar_to_big_Foo_Bal_Bar_Baz_with_range_16_should_be_address_index_8)
+{
+	//ARRANGE
+	char	big[] = "Foo Bal Bar Baz";
+	char	little[] = "Bar";
+	size_t	size = 16;
+	char	*expected_result = &big[8];
+	char	*actual_result;
+
+	//ACT
+	actual_result = ft_strnstr(big, little, size);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected-result should be the same address");
+}
+
+MU_TEST_SUITE(test_strnstr_passing_a_little_Bar_to_big_Foo_Baz_with_range_8_should_be_NULL)
+{
+	//ARRANGE
+	char	big[] = "Foo Baz";
+	char	little[] = "Bar";
+	size_t	size = 8;
+	char	*expected_result = 0;
+	char	*actual_result;
+
+	//ACT
+	actual_result = ft_strnstr(big, little, size);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected-result should be the same address");
+}
+
+MU_TEST_SUITE(test_strnstr_passing_a_little_empty_string_to_big_Foo_Bar_Baz_with_range_12_should_be_big)
+{
+	//ARRANGE
+	char	big[] = "Foo Bar Baz";
+	char	little[] = "";
+	size_t	size = 12;
+	char	*expected_result = big;
+	char	*actual_result;
+
+	//ACT
+	printf("\n%s\n%s\n", actual_result, expected_result);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected-result should be the same address");
+}
+
+MU_TEST_SUITE(test_strnstr_passing_a_little_string_Bar_bigger_then_string_big_Fo_with_range_7_should_be_NULL)
+{
+	//ARRANGE
+	char	big[] = "Fo";
+	char	little[] = "Bar";
+	size_t	size = 7;
+	char	*expected_result = NULL;
+	char	*actual_result;
+
+	//ACT
+	printf("\n%s\n%s\n", actual_result, expected_result);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected-result should be the same address");
+}
+
 MU_TEST_SUITE(test_suite) {
+	// strnstr tests
+	MU_RUN_TEST(test_strnstr_passing_a_little_string_Bar_bigger_then_string_big_Fo_with_range_7_should_be_NULL);
+	MU_RUN_TEST(test_strnstr_passing_a_little_empty_string_to_big_Foo_Bar_Baz_with_range_12_should_be_big);
+	MU_RUN_TEST(test_strnstr_passing_a_little_Bar_to_big_Foo_Bal_Bar_Baz_with_range_16_should_be_address_index_8);
+	MU_RUN_TEST(test_strnstr_passing_a_little_Bar_to_big_Foo_Baz_with_range_8_should_be_NULL);
+	MU_RUN_TEST(test_strnstr_passing_a_little_Bar_to_big_Foo_Bar_Baz_with_range_8_should_be_address_index_4);
 	// strncmp tests
+	MU_RUN_TEST(test_strncmp_passing_two_strings_equal_with_range_zero);
 	MU_RUN_TEST(test_strncmp_passing_two_strings_index_4_with_a_diff_inside_the_index_4_with_range_3);
 	MU_RUN_TEST(test_strncmp_passing_two_empty_strings_and_range_3_should_be_zero);
 	MU_RUN_TEST(test_strncmp_passing_two_strings_LUA_compare_to_MUA_with_range_three_and_should_be_one_less);
