@@ -256,7 +256,7 @@ MU_TEST_SUITE(test_memmove_move_two_pos_memory_of_same_size_words)
 	//ARRANGE
 	const char	dest[] = "lula";
 	char		src[] = "davy";
-	char	expected_dest[] = "dala";
+	char	*expected_memory_position = dest;
 	char	*returned_memory_position;
 	size_t	size = 2;
 
