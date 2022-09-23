@@ -15,7 +15,7 @@ MU_TEST_SUITE(test_isdigit_entering_c_returns_false)
 	//ASSERT
 	mu_assert_int_eq(expected_result, actual_result);
 }
-/*
+
 MU_TEST_SUITE(test_strlcpy_entering_ai_oi_2_set_dst_as_o_and_returns_2)
 {
 	//ARRANGE
@@ -267,7 +267,7 @@ MU_TEST_SUITE(test_memmove_move_two_pos_memory_of_same_size_words)
 	//ASSERT
 	mu_assert_string_eq(expected_dest, dest);
 	mu_assert(expected_memory_position == returned_memory_position, "the returned memory position should be dest!!");
-}*/
+}
 
 MU_TEST_SUITE(test_if_enter_the_letter_a_lowercase_in_isalpha_func_result_in_true)
 {
