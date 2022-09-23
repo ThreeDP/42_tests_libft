@@ -706,6 +706,7 @@ MU_TEST_SUITE(test_func_memchr_passing_size_0_should_return_NULL)
 	//ASSERT
 	mu_assert(expected_result == actual_result, "expected_result should be NULL");
 }
+
 /*
 MU_TEST_SUITE(test_memmove_passing_a_dest_plus_5_in_address_of_src_in_the_same_memory_location)
 {
@@ -723,6 +724,7 @@ MU_TEST_SUITE(test_memmove_passing_a_dest_plus_5_in_address_of_src_in_the_same_m
 	mu_assert_string_eq(expected_dest, returned_dest);
 }
 */
+
 MU_TEST_SUITE(test_isalnum_passing_asterisk_should_be_false)
 {
 	//ARRANGE
@@ -1390,6 +1392,13 @@ MU_TEST_SUITE(test_suite) {
 	MU_RUN_TEST(test_strnstr_passing_a_little_Bar_to_big_Foo_Bal_Bar_Baz_with_range_16_should_be_address_index_8);
 	MU_RUN_TEST(test_strnstr_passing_a_little_Bar_to_big_Foo_Baz_with_range_8_should_be_NULL);
 	MU_RUN_TEST(test_strnstr_passing_a_little_Bar_to_big_Foo_Bar_Baz_with_range_8_should_be_address_index_4);
+	MU_RUN_TEST(test_strnstr_to_find_ora_em_amora_should_return_a_pointer_to_ora_in_amora);
+	MU_RUN_TEST(test_strnstr_to_find_aro_em_amora_should_return_NULL);
+	MU_RUN_TEST(test_strnstr_if_little_is_empty_string_return_big);
+	MU_RUN_TEST(test_strnstr_finding_orabolas_in_amora_but_len_3_should_return_pointer_to_ora_in_amora);
+	MU_RUN_TEST(test_strnstr_finding_ora_in_amora_but_len_0_should_return_NULL);
+	MU_RUN_TEST(test_strnstr_finding_ora_in_amora_but_len_50_should_return_pointer_to_ora_in_amora);
+	MU_RUN_TEST(test_strnstr_finding_orabolas_in_amora_but_len_50_should_return_NULL);
 	// strncmp tests
 	MU_RUN_TEST(test_strncmp_passing_two_strings_equal_with_range_zero);
 	MU_RUN_TEST(test_strncmp_passing_two_strings_index_4_with_a_diff_inside_the_index_4_with_range_3);
@@ -1468,7 +1477,6 @@ MU_TEST_SUITE(test_suite) {
 	MU_RUN_TEST(test_if_enter_the_character_DEL_in_isalpha_func_result_in_false);
 	MU_RUN_TEST(test_if_enter_the_character_asterisk_in_isalpha_func_result_in_false);
 	// strlcpy tests
-		/*
 	MU_RUN_TEST(test_strlcpy_entering_mochida_rapdos_0_do_not_modify_dst_and_returns_6);
 	MU_RUN_TEST(test_strlcpy_entering_lu_la_minus_1_set_dst_as_la_and_returns_2);
 	MU_RUN_TEST(test_strlcpy_entering_papelada_boiada_9_keep_dst7_as_a);
@@ -1476,14 +1484,6 @@ MU_TEST_SUITE(test_suite) {
 	MU_RUN_TEST(test_strlcpy_entering_papel_boiada_7_set_dst_as_boiada_and_returns_6);
 	MU_RUN_TEST(test_strlcpy_entering_ah_boi_3_set_dst_as_bo_and_returns_3);
 	MU_RUN_TEST(test_strlcpy_entering_ah_oi_3_set_dst_as_oi_and_returns_2);
-	
-	MU_RUN_TEST(test_strnstr_to_find_ora_em_amora_should_return_a_pointer_to_ora_in_amora);
-	MU_RUN_TEST(test_strnstr_to_find_aro_em_amora_should_return_NULL);
-	MU_RUN_TEST(test_strnstr_if_little_is_empty_string_return_big);
-	MU_RUN_TEST(test_strnstr_finding_orabolas_in_amora_but_len_3_should_return_pointer_to_ora_in_amora);
-	MU_RUN_TEST(test_strnstr_finding_ora_in_amora_but_len_0_should_return_NULL);
-	MU_RUN_TEST(test_strnstr_finding_ora_in_amora_but_len_50_should_return_pointer_to_ora_in_amora);
-	MU_RUN_TEST(test_strnstr_finding_orabolas_in_amora_but_len_50_should_return_NULL);
 	//MU_RUN_TEST(test_memmove_move_two_pos_memory_of_same_size_words);
 	//MU_RUN_TEST(test_memmove_move_three_pos_memory_of_same_size_words);*/
 }
