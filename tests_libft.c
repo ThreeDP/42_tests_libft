@@ -476,7 +476,7 @@ MU_TEST_SUITE(test_func_memset_fill_5_bytes_of_a_array_int_with_28_bytes)
 	//ASSERT
 	while (i < position)
 	{
-		mu_assert_int_eq(expected_result[i], array[i]);
+		mu_assert_int_eq(expected_result[i], returned_result);
 		i++;
 	}
 }
@@ -1256,7 +1256,7 @@ MU_TEST_SUITE(test_strnstr_passing_a_little_string_Bar_bigger_then_string_big_Fo
 MU_TEST_SUITE(test_atoi_passing_a_character_0_should_be_a_int_zero)
 {
 	//ARRANGE
-	char	str[] = "0";
+	char		str[] = "0"
 	int		expected_result = 0;
 	int		actual_result;
 
@@ -1351,7 +1351,31 @@ MU_TEST_SUITE(test_atoi_passing_a_string_with_MAX_POS_should_be_minus_2147483648
 	mu_assert_int_eq(expected_result, actual_result);
 }
 
+MU_TEST_SUITE(test_calloc_passing_array_type_char_with_5_bytes_should_be_5_bytes_zero)
+{
+	//ARRANGE
+	size_t	nmemb = 5;
+	int	size_type = sizeof(char);
+	char	*expected_result = (char *) calloc(nmemb, size_type);
+	char	*actual_result;
+	size_t	i;
+	size_t	array_size;
+
+	//ACT
+	actual_result = (char *)ft_calloc(nmemb, size_type);
+
+	//ASSERT
+	i = 0;
+	while (i < size_type)
+	{
+		mu_assert_int_eq(expected_result[i], actual_result[i]);
+		i++;
+	}
+}
+
 MU_TEST_SUITE(test_suite) {
+	// calloc tests
+	MU_RUN_TEST(test_calloc_passing_array_type_char_with_5_bytes_should_be_5_bytes_zero);
 	// atoi tests
 	MU_RUN_TEST(test_atoi_passing_a_string_with_MAX_POS_should_be_minus_2147483648);
 	MU_RUN_TEST(test_atoi_passing_a_string_with_MAX_POS_should_be_2147483647);
