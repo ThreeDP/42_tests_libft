@@ -145,7 +145,7 @@ MU_TEST_SUITE(test_strnstr_to_find_ora_em_amora_should_return_a_pointer_to_ora_i
 	char		big[] = "amora";
 	char		little[] = "ora";
 	size_t		len = 3;
-	char		*expected_result = &big[2];
+	char		*expected_result = NULL;
 	char		*actual_result;
 
 	//ACT
@@ -193,12 +193,11 @@ MU_TEST_SUITE(test_strnstr_finding_orabolas_in_amora_but_len_3_should_return_poi
 	char		big[] = "amora";
 	char		little[] = "orabolas";
 	size_t		len = 3;
-	char		*expected_result = &big[2];
+	char		*expected_result = NULL;
 	char		*actual_result;
 
 	//ACT
 	actual_result = ft_strnstr(big, little, len);
-
 	//ASSERT
 	mu_assert(expected_result == actual_result, "expected_result should point to ora position in amora");
 }
@@ -223,6 +222,22 @@ MU_TEST_SUITE(test_strnstr_finding_ora_in_amora_but_len_50_should_return_pointer
 {
 	//ARRANGE
 	char		big[] = "amora";
+	char		little[] = "ora";
+	size_t		len = 50;
+	char		*expected_result = &big[2];
+	char		*actual_result;
+
+	//ACT
+	actual_result = ft_strnstr(big, little, len);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected_result should point to ora position in amora");
+}
+
+MU_TEST_SUITE(test_strnstr_finding_ora_in_amorao_but_len_50_should_return_pointer_to_ora_in_amora)
+{
+	//ARRANGE
+	char		big[] = "amorao";
 	char		little[] = "ora";
 	size_t		len = 50;
 	char		*expected_result = &big[2];
@@ -705,24 +720,6 @@ MU_TEST_SUITE(test_func_memchr_passing_size_0_should_return_NULL)
 	//ASSERT
 	mu_assert(expected_result == actual_result, "expected_result should be NULL");
 }
-
-/*
-MU_TEST_SUITE(test_memmove_passing_a_dest_plus_5_in_address_of_src_in_the_same_memory_location)
-{
-	//ARRANGE
-	char	src[] = "watermelonjuice";
-	char	*dest = src + 5;
-	size_t	size = 10;
-	char	expected_dest[] = "watermelon";
-	char	*returned_dest;
-
-	//ACT
-	returned_dest = ft_memmove(dest, src, size);
-
-	//ASSERT
-	mu_assert_string_eq(expected_dest, returned_dest);
-}
-*/
 
 MU_TEST_SUITE(test_isalnum_passing_asterisk_should_be_false)
 {
@@ -1366,16 +1363,87 @@ MU_TEST_SUITE(test_calloc_passing_array_type_char_with_5_bytes_should_be_5_bytes
 
 	//ASSERT
 	i = 0;
-	while (i < size_type)
+	while (i < (nmemb * size_type))
 	{
 		mu_assert_int_eq(expected_result[i], actual_result[i]);
 		i++;
 	}
 }
 
+MU_TEST_SUITE(test_calloc_passing_array_type_char_with_6_bytes_should_be_6_bytes_zero)
+{
+	//ARRANGE
+	size_t	nmemb = 6;
+	size_t	size_type = sizeof(char);
+	char	*expected_result = (char *) calloc(nmemb, size_type);
+	char	*actual_result;
+	size_t	i;
+
+	//ACT
+	actual_result = (char *)ft_calloc(nmemb, size_type);
+
+	//ASSERT
+	i = 0;
+	while (i < (nmemb * size_type))
+	{
+		mu_assert_int_eq(expected_result[i], actual_result[i]);
+		i++;
+	}
+}
+
+MU_TEST_SUITE(test_calloc_passing_array_type_char_with_nmemb_zero_should_be_NULL)
+{
+	//ARRANGE
+	size_t	nmemb = 0;
+	size_t	size_type = sizeof(int);
+	int		*expected_result = NULL;
+	int		*actual_result;
+
+	//ACT
+	actual_result = (int *)ft_calloc(nmemb, size_type);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "Expected actual result should be NULL");
+}
+
+MU_TEST_SUITE(test_calloc_passing_array_size_0_with_nmemb_2_should_be_NULL)
+{
+	//ARRANGE
+	size_t	nmemb = 2;
+	size_t	size_type = 0;
+	int		*expected_result = NULL;
+	int		*actual_result;
+
+	//ACT
+	actual_result = (int *)ft_calloc(nmemb, size_type);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "Expected actual result should be NULL");
+
+}
+
+MU_TEST_SUITE(test_calloc_passing_array_int_with_nmemb_MAX_INT_should_be_killed)
+{
+	//ARRANGE
+	size_t	nmemb = ~(1<<31);
+	size_t	size_type = sizeof(int);
+	int		*expected_result = NULL;
+	int		*actual_result;
+
+	//ACT
+	actual_result = (int *)ft_calloc(nmemb, size_type);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "Expected actual result should be NULL");
+}
+
 MU_TEST_SUITE(test_suite) {
 	// calloc tests
+	MU_RUN_TEST(test_calloc_passing_array_int_with_nmemb_MAX_INT_should_be_killed);
+	MU_RUN_TEST(test_calloc_passing_array_size_0_with_nmemb_2_should_be_NULL);
+	MU_RUN_TEST(test_calloc_passing_array_type_char_with_nmemb_zero_should_be_NULL);
 	MU_RUN_TEST(test_calloc_passing_array_type_char_with_5_bytes_should_be_5_bytes_zero);
+	MU_RUN_TEST(test_calloc_passing_array_type_char_with_6_bytes_should_be_6_bytes_zero);
 	// atoi tests
 	MU_RUN_TEST(test_atoi_passing_a_string_with_MAX_POS_should_be_minus_2147483648);
 	MU_RUN_TEST(test_atoi_passing_a_string_with_MAX_POS_should_be_2147483647);
@@ -1397,6 +1465,7 @@ MU_TEST_SUITE(test_suite) {
 	MU_RUN_TEST(test_strnstr_finding_ora_in_amora_but_len_0_should_return_NULL);
 	MU_RUN_TEST(test_strnstr_finding_ora_in_amora_but_len_50_should_return_pointer_to_ora_in_amora);
 	MU_RUN_TEST(test_strnstr_finding_orabolas_in_amora_but_len_50_should_return_NULL);
+	MU_RUN_TEST(test_strnstr_finding_ora_in_amorao_but_len_50_should_return_pointer_to_ora_in_amora);
 	// strncmp tests
 	MU_RUN_TEST(test_strncmp_passing_two_strings_equal_with_range_zero);
 	MU_RUN_TEST(test_strncmp_passing_two_strings_index_4_with_a_diff_inside_the_index_4_with_range_3);
@@ -1491,3 +1560,21 @@ int main() {
 	MU_REPORT();
 	return MU_EXIT_CODE;
 }
+
+/*
+MU_TEST_SUITE(test_memmove_passing_a_dest_plus_5_in_address_of_src_in_the_same_memory_location)
+{
+	//ARRANGE
+	char	src[] = "watermelonjuice";
+	char	*dest = src + 5;
+	size_t	size = 10;
+	char	expected_dest[] = "watermelon";
+	char	*returned_dest;
+
+	//ACT
+	returned_dest = ft_memmove(dest, src, size);
+
+	//ASSERT
+	mu_assert_string_eq(expected_dest, returned_dest);
+}
+*/
