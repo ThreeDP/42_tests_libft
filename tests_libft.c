@@ -721,6 +721,22 @@ MU_TEST_SUITE(test_func_memchr_passing_size_0_should_return_NULL)
 	mu_assert(expected_result == actual_result, "expected_result should be NULL");
 }
 
+MU_TEST_SUITE(test_func_memchr_passing_a_array_int_with_7_elements_should_be_a_pointer_for_3_index)
+{
+	//ARRANGE
+	int 	tab[7] = {-49, 49, 1, -1, 0, -2, 2};
+	int		find = -1;
+	size_t	size = 7;
+	int		*expected_result = &tab[3];
+	int		*actual_result;
+
+	//ACT
+	actual_result = ft_memchr(tab, find, size);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected_result should be pointer for index 3");
+}
+
 MU_TEST_SUITE(test_isalnum_passing_asterisk_should_be_false)
 {
 	//ARRANGE
@@ -1107,6 +1123,22 @@ MU_TEST_SUITE(test_strncmp_passing_two_strings_DIA_compare_to_DIA_with_range_thr
 	mu_assert_int_eq(expected_result, actual_result);
 }
 
+MU_TEST_SUITE(test_strncmp_passing_two_strings_DIA_bar_200_compare_to_DIA_bar_0_with_range_5_and_should_be_1)
+{
+	//ARRANGE
+	char	s1[] = "DIA\200";
+	char	s2[] = "DIA\0";
+	size_t	size = 5;
+	int		expected_result = 1;
+	int		actual_result;
+
+	//ACT
+	actual_result = ft_strncmp(s1, s2, size);
+
+	//ASSERT
+	mu_assert_int_eq(expected_result, actual_result);
+}
+
 MU_TEST_SUITE(test_strncmp_passing_two_strings_LUA_compare_to_MUA_with_range_three_and_should_be_one_less)
 {
 	//ARRANGE
@@ -1437,7 +1469,25 @@ MU_TEST_SUITE(test_calloc_passing_array_int_with_nmemb_MAX_INT_should_be_killed)
 	mu_assert(expected_result == actual_result, "Expected actual result should be NULL");
 }
 
+MU_TEST_SUITE(test_memmove_passing_a_dest_plus_5_in_address_of_src_in_the_same_memory_location)
+{
+	//ARRANGE
+	char	src[] = "watermelonjuice";
+	char	*dest = src + 5;
+	size_t	size = 10;
+	char	expected_dest[] = "watermelon";
+	char	*returned_dest;
+
+	//ACT
+	returned_dest = ft_memmove(dest, src, size);
+
+	//ASSERT
+	mu_assert_string_eq(expected_dest, returned_dest);
+}
+
 MU_TEST_SUITE(test_suite) {
+	// memmove tests
+	MU_RUN_TEST(test_memmove_passing_a_dest_plus_5_in_address_of_src_in_the_same_memory_location);
 	// calloc tests
 	MU_RUN_TEST(test_calloc_passing_array_int_with_nmemb_MAX_INT_should_be_killed);
 	MU_RUN_TEST(test_calloc_passing_array_size_0_with_nmemb_2_should_be_NULL);
@@ -1467,6 +1517,7 @@ MU_TEST_SUITE(test_suite) {
 	MU_RUN_TEST(test_strnstr_finding_orabolas_in_amora_but_len_50_should_return_NULL);
 	MU_RUN_TEST(test_strnstr_finding_ora_in_amorao_but_len_50_should_return_pointer_to_ora_in_amora);
 	// strncmp tests
+	MU_RUN_TEST(test_strncmp_passing_two_strings_DIA_bar_200_compare_to_DIA_bar_0_with_range_5_and_should_be_1);
 	MU_RUN_TEST(test_strncmp_passing_two_strings_equal_with_range_zero);
 	MU_RUN_TEST(test_strncmp_passing_two_strings_index_4_with_a_diff_inside_the_index_4_with_range_3);
 	MU_RUN_TEST(test_strncmp_passing_two_empty_strings_and_range_3_should_be_zero);
@@ -1503,13 +1554,12 @@ MU_TEST_SUITE(test_suite) {
 	MU_RUN_TEST(test_isalnum_passing_letter_should_be_true);
 	MU_RUN_TEST(test_isalnum_passing_asterisk_should_be_false);
 	MU_RUN_TEST(test_isalnum_passing_number_should_be_true);
-	// memmove tests
-	// MU_RUN_TEST(test_memmove_passing_a_dest_plus_5_in_address_of_src_in_the_same_memory_location);
 	// memcpy tests
 	MU_RUN_TEST(test_func_memcpy_copy_a_string_of_5_char_in_a_string_of_5_char_in_differents_memory_locations);
 	MU_RUN_TEST(test_func_memcpy_copy_a_string_of_6_char_in_a_string_of_5_char_in_differents_memory_locations);
 	MU_RUN_TEST(test_memcpy_passing_a_dest_plus_5_in_address_of_src_in_the_same_memory_location);
 	// memchr
+	MU_RUN_TEST(test_func_memchr_passing_a_array_int_with_7_elements_should_be_a_pointer_for_3_index);
 	MU_RUN_TEST(test_func_memchr_passing_size_0_should_return_NULL);
 	MU_RUN_TEST(test_func_memchr_locating_O_inside_AURORA_with_a_range_of_3_should_return_NULL);
 	MU_RUN_TEST(test_func_memchr_locating_X_inside_AURORA_should_return_NULL);
@@ -1560,21 +1610,3 @@ int main() {
 	MU_REPORT();
 	return MU_EXIT_CODE;
 }
-
-/*
-MU_TEST_SUITE(test_memmove_passing_a_dest_plus_5_in_address_of_src_in_the_same_memory_location)
-{
-	//ARRANGE
-	char	src[] = "watermelonjuice";
-	char	*dest = src + 5;
-	size_t	size = 10;
-	char	expected_dest[] = "watermelon";
-	char	*returned_dest;
-
-	//ACT
-	returned_dest = ft_memmove(dest, src, size);
-
-	//ASSERT
-	mu_assert_string_eq(expected_dest, returned_dest);
-}
-*/
