@@ -1471,22 +1471,6 @@ MU_TEST_SUITE(test_calloc_passing_array_int_with_nmemb_MAX_INT_should_be_killed)
 	mu_assert(expected_result == actual_result, "Expected actual result should be NULL");
 }
 
-MU_TEST_SUITE(test_memmove_passing_a_dest_plus_5_in_address_of_src_in_the_same_memory_location)
-{
-	//ARRANGE
-	char	src[] = "watermelonjuice";
-	char	*dest = src + 5;
-	size_t	size = 10;
-	char	expected_dest[] = "watermelon";
-	char	*returned_dest;
-
-	//ACT
-	returned_dest = ft_memmove(dest, src, size);
-
-	//ASSERT
-	mu_assert_string_eq(expected_dest, returned_dest);
-}
-
 MU_TEST_SUITE(test_strnstr_passing_a_lorem_ipsum_text_and_search_for_ipsumm_with_size_30)
 {
 	//ARRANGE
@@ -1519,8 +1503,163 @@ MU_TEST_SUITE(test_strnstr_passing_a_lorem_ipsum_dolor_sit_amet_text_and_search_
 	mu_assert(expected_result == actual_result, "expected-result should be NULL");
 }
 
+MU_TEST_SUITE(test_memmove_passing_a_dest_plus_5_in_address_of_src_in_the_same_memory_location)
+{
+	//ARRANGE
+	char	src[] = "watermelonjuice";
+	char	*dest = src + 5;
+	size_t	size = 10;
+	char	expected_dest[] = "watermelon";
+	char	*returned_dest;
+
+	//ACT
+	returned_dest = ft_memmove(dest, src, size);
+
+	//ASSERT
+	mu_assert_string_eq(expected_dest, returned_dest);
+}
+
+MU_TEST_SUITE(test_memmove_passing_a_dest_lorem_ipsum_and_src_consectetur_should_be_consectetu_dolor_sit_amet)
+{
+	//ARRANGE
+	char	src[] = "lorem ipsum dolor sit amet";
+	char	*dest = src + 1;
+	size_t	size = 10;
+	char	expected_dest[] = "consectetu dolor sit amet";
+	char	*returned_dest;
+
+	//ACT
+	returned_dest = ft_memmove(dest, "consectetur", size);
+
+	//ASSERT
+	mu_assert_string_eq(expected_dest, returned_dest);
+}
+
+MU_TEST_SUITE(test_memmove_passing_dest_in_the_src_and_the_src_in_the_dest_with_dest_pointer_for_src_plus_1_should_be_orem_ips)
+{
+	//ARRANGE
+							 	
+	char	src[] = "lorem ipsum dolor sit amet";
+	char	*dest = src + 1;
+	size_t	size = 8;
+	char	expected_dest[] = "orem ipssum dolor sit amet";
+	char	*returned_dest;
+
+	//ACT
+	returned_dest = ft_memmove(src, dest, size);
+
+	//ASSERT
+	mu_assert_string_eq(expected_dest, returned_dest);
+}
+
+MU_TEST_SUITE(test_strdup_passing_largatixa_should_be_pointer_to_index_1_of_largatixa_copy)
+{
+	//ARRANGE
+	char	src[] = "largatixa";
+	char	*expected_dest = &src[0];
+	char	*actual_result;
+
+	//ACT
+	actual_result = ft_strdup(src);
+
+	//ASSERT
+	mu_assert_string_eq(expected_dest, actual_result);
+	mu_assert(expected_dest != actual_result, "The result of actual_result should be different of src!!");
+}
+/*
+MU_TEST_SUITE(test_strlcat_concat_dest_watermelon_with_src_juice_with_size_16_should_be_watermelonjuice)
+{
+	//ARRANGE
+	size_t	size = 16;
+	char	dest[16] = "watermelon";
+	char	src[] = "juice";
+	char	expected_result[16] = "watermelonjuice";
+	size_t	actual_result = 0;
+
+	//ACT
+	actual_result = ft_strlcat(dest, src, size);
+
+	//ASSERT
+	mu_assert_string_eq(expected_result, dest);
+}
+
+MU_TEST_SUITE(test_strlcat_passing_a_string_size_11_with_a_inside_concat_with_lorem_size_15_should_be)
+{
+	//ARRANGE
+	size_t	size = 15;
+	char	dest[11] = "a";
+	char	src[] = "lorem";
+	char	expected_result[16] = "watermelonjuice";
+	size_t	actual_result = 0;
+
+	//ACT
+	actual_result = ft_strlcat(dest, src, size);
+
+	//ASSERT
+	mu_assert_string_eq(expected_result, dest);
+}
+*/
+MU_TEST_SUITE(test_substr_passing_One_Ring_to_rule_them_all_start_with_0_end_with_9_should_be_One_Ring)
+{
+	//ARRANGE
+	char			s[] = "One Ring to rule them all";
+	unsigned int	start = 0;
+	size_t			len = 8;
+	char			expected_result[] = "One Ring";
+	char			*actual_result;
+
+	//ACT
+	actual_result = ft_substr(s, start, len);
+
+	//ASSERT
+	mu_assert_string_eq(expected_result, actual_result);
+}
+
+MU_TEST_SUITE(test_substr_passing_Right_part_bargemen_Radagast_the_Brown_cracked_start_with_20_end_with_9_should_be_Radagast)
+{
+	//ARRANGE
+	char			s[] = "Right part bargemen Radagast the Brown cracked.";
+	unsigned int	start = 20;
+	size_t			len = 8;
+	char			expected_result[] = "Radagast";
+	char			*actual_result;
+
+	//ACT
+	actual_result = ft_substr(s, start, len);
+
+	//ASSERT
+	mu_assert_string_eq(expected_result, actual_result);
+}
+
+MU_TEST_SUITE(test_substr_passing_Gandalf_death_was_not_in_vain_start_with_0_end_with_8_with_MAX_INT_len_should_be_NULL)
+{
+	//ARRANGE
+	char			s[] = "Gandalf's death";
+	unsigned int	start = 400;
+	size_t			len = 20;
+	char			*expected_result = "";
+	char			*actual_result;
+
+	//ACT
+	actual_result = ft_substr(s, start, len);
+
+	//ASSERT
+	mu_assert_string_eq(expected_result, actual_result);
+}
+
 MU_TEST_SUITE(test_suite) {
+	// substr tests
+	MU_RUN_TEST(test_substr_passing_Gandalf_death_was_not_in_vain_start_with_0_end_with_8_with_MAX_INT_len_should_be_NULL);
+	MU_RUN_TEST(test_substr_passing_Right_part_bargemen_Radagast_the_Brown_cracked_start_with_20_end_with_9_should_be_Radagast);
+	MU_RUN_TEST(test_substr_passing_One_Ring_to_rule_them_all_start_with_0_end_with_9_should_be_One_Ring);
+	//strlcat tests
+	//MU_RUN_TEST(test_strlcat_passing_a_string_size_11_with_a_inside_concat_with_lorem_size_15_should_be);
+	//MU_RUN_TEST(test_strlcat_concat_dest_watermelon_with_src_juice_with_size_16_should_be_watermelonjuice);
+	// strdup tests
+	MU_RUN_TEST(test_strdup_passing_largatixa_should_be_pointer_to_index_1_of_largatixa_copy);
 	// memmove tests
+	MU_RUN_TEST(test_memmove_passing_dest_in_the_src_and_the_src_in_the_dest_with_dest_pointer_for_src_plus_1_should_be_orem_ips);
+	MU_RUN_TEST(test_memmove_passing_a_dest_lorem_ipsum_and_src_consectetur_should_be_consectetu_dolor_sit_amet);
 	MU_RUN_TEST(test_memmove_passing_a_dest_plus_5_in_address_of_src_in_the_same_memory_location);
 	// calloc tests
 	MU_RUN_TEST(test_calloc_passing_array_int_with_nmemb_MAX_INT_should_be_killed);
