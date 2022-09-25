@@ -1647,7 +1647,40 @@ MU_TEST_SUITE(test_substr_passing_Gandalf_death_was_not_in_vain_start_with_0_end
 	mu_assert_string_eq(expected_result, actual_result);
 }
 
+MU_TEST_SUITE(test_strjoin_concat_One_with_Ring_should_be_One_Ring)
+{
+	//ARRANGE
+	char	s1[] = "One ";
+	char	s2[] = "Ring";
+	char	expected_result[] = "One Ring";
+	char	*actual_result;
+
+	//ACT
+	actual_result = ft_strjoin(s1, s2);
+
+	//ASSERT
+	mu_assert_string_eq(expected_result, actual_result);
+}
+
+MU_TEST_SUITE(test_strjoin_concat_One_Ring_to_rule_them_all_should_be_One_Ring_to_rule_them_all)
+{
+	//ARRANGE
+	char	s1[] = "One Ring ";
+	char	s2[] = "to rule them all";
+	char	expected_result[] = "One Ring to rule them all";
+	char	*actual_result;
+
+	//ACT
+	actual_result = ft_strjoin(s1, s2);
+
+	//ASSERT
+	mu_assert_string_eq(expected_result, actual_result);
+}
+
 MU_TEST_SUITE(test_suite) {
+	// strjoin tests
+	MU_RUN_TEST(test_strjoin_concat_One_Ring_to_rule_them_all_should_be_One_Ring_to_rule_them_all);
+	MU_RUN_TEST(test_strjoin_concat_One_with_Ring_should_be_One_Ring);
 	// substr tests
 	MU_RUN_TEST(test_substr_passing_Gandalf_death_was_not_in_vain_start_with_0_end_with_8_with_MAX_INT_len_should_be_NULL);
 	MU_RUN_TEST(test_substr_passing_Right_part_bargemen_Radagast_the_Brown_cracked_start_with_20_end_with_9_should_be_Radagast);
