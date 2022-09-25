@@ -721,13 +721,15 @@ MU_TEST_SUITE(test_func_memchr_passing_size_0_should_return_NULL)
 	mu_assert(expected_result == actual_result, "expected_result should be NULL");
 }
 
+
+// Why this test works ? i really do'nt undestand
 MU_TEST_SUITE(test_func_memchr_passing_a_array_int_with_7_elements_should_be_a_pointer_for_3_index)
 {
 	//ARRANGE
 	int 	tab[7] = {-49, 49, 1, -1, 0, -2, 2};
 	int		find = -1;
 	size_t	size = 7;
-	int		*expected_result = &tab[3];
+	int		*expected_result = memchr(tab, find, size);
 	int		*actual_result;
 
 	//ACT
@@ -1129,7 +1131,7 @@ MU_TEST_SUITE(test_strncmp_passing_two_strings_DIA_bar_200_compare_to_DIA_bar_0_
 	char	s1[] = "DIA\200";
 	char	s2[] = "DIA\0";
 	size_t	size = 5;
-	int		expected_result = 1;
+	int		expected_result = 128;
 	int		actual_result;
 
 	//ACT
@@ -1485,6 +1487,38 @@ MU_TEST_SUITE(test_memmove_passing_a_dest_plus_5_in_address_of_src_in_the_same_m
 	mu_assert_string_eq(expected_dest, returned_dest);
 }
 
+MU_TEST_SUITE(test_strnstr_passing_a_lorem_ipsum_text_and_search_for_ipsumm_with_size_30)
+{
+	//ARRANGE
+	char	big[] = "lorem ipsum dolor sit amet";
+	char	little[] = "ipsumm";
+	size_t	size = 30;
+	char	*expected_result = NULL;
+	char	*actual_result;
+
+	//ACT
+	actual_result = ft_strnstr(big, little, size);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected-result should be NULL");
+}
+
+MU_TEST_SUITE(test_strnstr_passing_a_lorem_ipsum_dolor_sit_amet_text_and_search_for_dolor_with_size_15)
+{
+	//ARRANGE
+	char	big[] = "lorem ipsum dolor sit amet";
+	char	little[] = "dolor";
+	size_t	size = 15;
+	char	*expected_result = NULL;
+	char	*actual_result;
+
+	//ACT
+	actual_result = ft_strnstr(big, little, size);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected-result should be NULL");
+}
+
 MU_TEST_SUITE(test_suite) {
 	// memmove tests
 	MU_RUN_TEST(test_memmove_passing_a_dest_plus_5_in_address_of_src_in_the_same_memory_location);
@@ -1503,6 +1537,8 @@ MU_TEST_SUITE(test_suite) {
 	MU_RUN_TEST(test_atoi_passing_a_string_123_should_be_123_int);
 	MU_RUN_TEST(test_atoi_passing_a_character_0_should_be_a_int_zero);
 	// strnstr tests
+	MU_RUN_TEST(test_strnstr_passing_a_lorem_ipsum_dolor_sit_amet_text_and_search_for_dolor_with_size_15);
+	MU_RUN_TEST(test_strnstr_passing_a_lorem_ipsum_text_and_search_for_ipsumm_with_size_30);
 	MU_RUN_TEST(test_strnstr_passing_a_little_string_Bar_bigger_then_string_big_Fo_with_range_7_should_be_NULL);
 	MU_RUN_TEST(test_strnstr_passing_a_little_empty_string_to_big_Foo_Bar_Baz_with_range_12_should_be_big);
 	MU_RUN_TEST(test_strnstr_passing_a_little_Bar_to_big_Foo_Bal_Bar_Baz_with_range_16_should_be_address_index_8);
