@@ -1,17 +1,18 @@
 DIR 			= 			../
 LIB 			= 			libft.a
+TEST			=			./test/
 SRCS 			= 			ft_atoi_test.c
 OBJS 			:= 			$(wildcard ../*.c)
 HEADERS 		= 			minunit.h
 FLAGS 			= 			-Wall -Werror -Wextra
 
 all: 		$(SRCS:.c=.o)
-				./run.exec
 
 %.o: 		%.c $(HEADERS) 
 	@cd 		$(DIR) && $(MAKE)
 	cc 			-o $@ -c $< $(FLAGS)
-	gcc			$(FLAGS) ft_atoi_test.o -I $(DIR) -L $(DIR) -lft -o run.exec
+	gcc			$(FLAGS) $(addprefix $(TEST), $@) -I $(DIR) -L $(DIR) -lft -o $(addprefix ./objs/, $@)
+	./$@
 
 norm:
 	@cd 		$(DIR) && $(MAKE) $@
