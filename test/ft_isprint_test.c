@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_enter_caracter_new_line_in_func_isprint)
 {

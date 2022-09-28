@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_func_memset_fill_5_bytes_of_a_string_with_7_bytes_array_type_char)
 {

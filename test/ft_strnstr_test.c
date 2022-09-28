@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_strnstr_passing_a_little_Bar_to_big_Foo_Bar_Baz_with_range_8_should_be_address_index_4)
 {

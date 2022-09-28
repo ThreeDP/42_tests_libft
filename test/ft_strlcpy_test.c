@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_strlcpy_entering_ai_oi_2_set_dst_as_o_and_returns_2)
 {

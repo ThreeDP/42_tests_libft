@@ -1,18 +1,4 @@
-#include "libft.h"
-
-MU_TEST_SUITE(test_strlen_passing_a_NULL_string_should_be_NULL)
-{
-	//ARRANGE
-	char	str[0];
-	int		expected_result = 0;
-	int		actual_result;
-
-	//ACT
-	actual_result = ft_strlen(str);
-
-	//ASSERT
-	mu_assert_int_eq(expected_result, actual_result);
-}
+#include "../test.h"
 
 MU_TEST_SUITE(test_enter_a_string_empty_in_func_strlen)
 {
@@ -58,7 +44,6 @@ MU_TEST_SUITE(test_enter_a_string_with_a_NULL_character_in_func_strlen)
 
 MU_TEST_SUITE(test_suite)
 {
-	MU_RUN_TEST(test_strlen_passing_a_NULL_string_should_be_NULL);
 	MU_RUN_TEST(test_enter_a_string_empty_in_func_strlen);
 	MU_RUN_TEST(test_enter_a_string_with_seven_characters_in_func_strlen);
 	MU_RUN_TEST(test_enter_a_string_with_a_NULL_character_in_func_strlen);

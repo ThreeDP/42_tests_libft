@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_func_memchr_locating_R_inside_AURORA_should_return_first_R_position)
 {

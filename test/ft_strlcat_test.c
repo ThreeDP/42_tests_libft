@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_strlcat_concat_dest_watermelon_with_src_juice_with_size_16_should_be_watermelonjuice)
 {

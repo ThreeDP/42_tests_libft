@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_strrchr_look_up_character_in_empty_string_should_return_null)
 {

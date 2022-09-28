@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_func_bzero_fill_5_positions_in_a_string_of_7_bytes)
 {

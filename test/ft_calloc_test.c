@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_calloc_passing_array_type_char_with_5_bytes_should_be_5_bytes_zero)
 {
@@ -19,6 +19,8 @@ MU_TEST_SUITE(test_calloc_passing_array_type_char_with_5_bytes_should_be_5_bytes
 		mu_assert_int_eq(expected_result[i], actual_result[i]);
 		i++;
 	}
+	free(expected_result);
+	free(actual_result);
 }
 
 MU_TEST_SUITE(test_calloc_passing_array_type_char_with_6_bytes_should_be_6_bytes_zero)
@@ -40,6 +42,8 @@ MU_TEST_SUITE(test_calloc_passing_array_type_char_with_6_bytes_should_be_6_bytes
 		mu_assert_int_eq(expected_result[i], actual_result[i]);
 		i++;
 	}
+	free(expected_result);
+	free(actual_result);
 }
 
 MU_TEST_SUITE(test_calloc_passing_array_type_char_with_nmemb_zero_should_be_NULL)
@@ -55,6 +59,7 @@ MU_TEST_SUITE(test_calloc_passing_array_type_char_with_nmemb_zero_should_be_NULL
 
 	//ASSERT
 	mu_assert(expected_result == actual_result, "Expected actual result should be NULL");
+	free(actual_result);
 }
 
 MU_TEST_SUITE(test_calloc_passing_array_size_0_with_nmemb_2_should_be_NULL)
@@ -70,7 +75,7 @@ MU_TEST_SUITE(test_calloc_passing_array_size_0_with_nmemb_2_should_be_NULL)
 
 	//ASSERT
 	mu_assert(expected_result == actual_result, "Expected actual result should be NULL");
-
+	free(actual_result);
 }
 
 MU_TEST_SUITE(test_calloc_passing_array_int_with_nmemb_MAX_INT_should_be_killed)
@@ -86,6 +91,7 @@ MU_TEST_SUITE(test_calloc_passing_array_int_with_nmemb_MAX_INT_should_be_killed)
 
 	//ASSERT
 	mu_assert(expected_result == actual_result, "Expected actual result should be NULL");
+	free(actual_result);
 }
 
 MU_TEST_SUITE(test_suite)

@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "../test.h"
 
 
 MU_TEST_SUITE(test_substr_passing_One_Ring_to_rule_them_all_start_with_0_end_with_9_should_be_One_Ring)
@@ -15,6 +15,7 @@ MU_TEST_SUITE(test_substr_passing_One_Ring_to_rule_them_all_start_with_0_end_wit
 
 	//ASSERT
 	mu_assert_string_eq(expected_result, actual_result);
+	free(actual_result);
 }
 
 MU_TEST_SUITE(test_substr_passing_Right_part_bargemen_Radagast_the_Brown_cracked_start_with_20_end_with_9_should_be_Radagast)
@@ -31,6 +32,7 @@ MU_TEST_SUITE(test_substr_passing_Right_part_bargemen_Radagast_the_Brown_cracked
 
 	//ASSERT
 	mu_assert_string_eq(expected_result, actual_result);
+	free(actual_result);
 }
 
 MU_TEST_SUITE(test_substr_passing_Gandalf_death_was_not_in_vain_start_with_0_end_with_8_with_MAX_INT_len_should_be_NULL)
@@ -47,6 +49,7 @@ MU_TEST_SUITE(test_substr_passing_Gandalf_death_was_not_in_vain_start_with_0_end
 
 	//ASSERT
 	mu_assert_string_eq(expected_result, actual_result);
+	free(actual_result);
 }
 
 MU_TEST_SUITE(test_suite)

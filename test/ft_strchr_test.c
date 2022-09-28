@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_strchr_passing_the_letter_A_to_find_in_amorA_must_return_the_address_of_indice_4)
 {

@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_func_memcpy_copy_a_string_of_5_char_in_a_string_of_5_char_in_differents_memory_locations)
 {

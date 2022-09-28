@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_atoi_passing_a_character_0_should_be_a_int_zero)
 {

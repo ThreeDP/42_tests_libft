@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_toupper_passing_a_char_number_should_be_itself)
 {

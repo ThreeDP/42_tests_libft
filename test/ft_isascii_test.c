@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_isascii_passing_out_of_the_range_should_be_false)
 {
@@ -18,6 +18,19 @@ MU_TEST_SUITE(test_ascii_passing_a_letter_should_be_true)
 {
 	//ARRANGE
 	int		letter = 'A';
+	int		returned_result;
+
+	//ACT
+	returned_result = ft_isascii(letter);
+
+	//ASSERT
+	mu_assert(returned_result > 0, "expected_result should be NULL");
+}
+
+MU_TEST_SUITE(test_isascii_passing_number_should_be_true)
+{
+	//ARRANGE
+	int		letter = '9';
 	int		returned_result;
 
 	//ACT

@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_strncmp_passing_two_strings_DIA_compare_to_DIA_with_range_three_and_should_be_zero)
 {

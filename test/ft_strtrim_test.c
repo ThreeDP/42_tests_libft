@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_strtrim_passing_ll_for_trim_in_the_string_One_Ring_to_rule_them_all_should_be_e_them_a)
 {

@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../test.h"
 
 MU_TEST_SUITE(test_strjoin_concat_One_with_Ring_should_be_One_Ring)
 {
@@ -13,6 +13,7 @@ MU_TEST_SUITE(test_strjoin_concat_One_with_Ring_should_be_One_Ring)
 
 	//ASSERT
 	mu_assert_string_eq(expected_result, actual_result);
+	free(actual_result);
 }
 
 MU_TEST_SUITE(test_strjoin_concat_One_Ring_to_rule_them_all_should_be_One_Ring_to_rule_them_all)
@@ -28,6 +29,7 @@ MU_TEST_SUITE(test_strjoin_concat_One_Ring_to_rule_them_all_should_be_One_Ring_t
 
 	//ASSERT
 	mu_assert_string_eq(expected_result, actual_result);
+	free(actual_result);
 }
 
 MU_TEST_SUITE(test_suite)
