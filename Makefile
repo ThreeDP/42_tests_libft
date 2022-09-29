@@ -58,3 +58,10 @@ ft_itoa:
 	@gcc		$(FLAGS) ./test/ft_itoa_test.o -I $(DIR) -L $(DIR) -lft
 	@echo		"$(L_YELLOWB)"RUN TEST: FT_ATOI "$(L_WHITE)"
 	@./a.out
+
+ft_calloc:
+	@cd 		$(DIR) && $(MAKE)
+	@cc 		-o ./test/ft_calloc_test.o -c ./test/ft_calloc_test.c $(FLAGS)
+	@gcc		$(FLAGS) ./test/ft_calloc_test.o -I $(DIR) -L $(DIR) -lft
+	@echo		"$(L_YELLOWB)"RUN TEST: FT_ATOI "$(L_WHITE)"
+	@./a.out

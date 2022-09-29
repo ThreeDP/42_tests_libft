@@ -94,8 +94,25 @@ MU_TEST_SUITE(test_calloc_passing_array_int_with_nmemb_MAX_INT_should_be_killed)
 	free(actual_result);
 }
 
+MU_TEST_SUITE(test_calloc_passing_array_MAX_INT_with_nmemb_MAX_INT_should_be_NULL)
+{
+	//ARRANGE
+	size_t	nmemb = ~(1<<31);
+	size_t	size_type = ~(1<<31);
+	int		*expected_result = NULL;
+	int		*actual_result;
+
+	//ACT
+	actual_result = (int *)ft_calloc(nmemb, size_type);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "Expected actual result should be NULL");
+	free(actual_result);
+}
+
 MU_TEST_SUITE(test_suite)
 {
+	MU_RUN_TEST(test_calloc_passing_array_MAX_INT_with_nmemb_MAX_INT_should_be_NULL);
     MU_RUN_TEST(test_calloc_passing_array_int_with_nmemb_MAX_INT_should_be_killed);
 	MU_RUN_TEST(test_calloc_passing_array_size_0_with_nmemb_2_should_be_NULL);
 	MU_RUN_TEST(test_calloc_passing_array_type_char_with_nmemb_zero_should_be_NULL);
