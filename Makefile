@@ -22,8 +22,8 @@ all: 		$(SRCS:.c=.o)
 	@cd 		$(DIR) && $(MAKE)
 	@cc 		-o $@ -c $< $(FLAGS)
 	@gcc		$(FLAGS) $@ -I $(DIR) -L $(DIR) -lft
-	@echo		"$(L_YELLOWB)"RUN TEST $@ "$(L_WHITE)"
-	./a.out
+	@echo		"$(L_YELLOWB)"RUN TEST: $@ "$(L_WHITE)"
+	@./a.out
 	@sleep .5
 
 norm:
@@ -43,3 +43,18 @@ fclean: 	cleann
 	@cd 		$(DIR) && $(MAKE) $@
 
 re: fclean all
+
+
+ft_atoi:
+	@cd 		$(DIR) && $(MAKE)
+	@cc 		-o ./test/ft_atoi_test.o -c ./test/ft_atoi_test.c $(FLAGS)
+	@gcc		$(FLAGS) ./test/ft_atoi_test.o -I $(DIR) -L $(DIR) -lft
+	@echo		"$(L_YELLOWB)"RUN TEST: FT_ATOI "$(L_WHITE)"
+	@./a.out
+
+ft_itoa:
+	@cd 		$(DIR) && $(MAKE)
+	@cc 		-o ./test/ft_itoa_test.o -c ./test/ft_itoa_test.c $(FLAGS)
+	@gcc		$(FLAGS) ./test/ft_itoa_test.o -I $(DIR) -L $(DIR) -lft
+	@echo		"$(L_YELLOWB)"RUN TEST: FT_ATOI "$(L_WHITE)"
+	@./a.out
