@@ -44,7 +44,7 @@ fclean: 	cleann
 
 re: fclean all
 
-
+## Exemplo de test unico de função
 ft_atoi:
 	@cd 		$(DIR) && $(MAKE)
 	@cc 		-o ./test/ft_atoi_test.o -c ./test/ft_atoi_test.c $(FLAGS)
@@ -56,12 +56,19 @@ ft_itoa:
 	@cd 		$(DIR) && $(MAKE)
 	@cc 		-o ./test/ft_itoa_test.o -c ./test/ft_itoa_test.c $(FLAGS)
 	@gcc		$(FLAGS) ./test/ft_itoa_test.o -I $(DIR) -L $(DIR) -lft
-	@echo		"$(L_YELLOWB)"RUN TEST: FT_ATOI "$(L_WHITE)"
+	@echo		"$(L_YELLOWB)"RUN TEST: FT_ITOA "$(L_WHITE)"
 	@./a.out
 
 ft_calloc:
 	@cd 		$(DIR) && $(MAKE)
 	@cc 		-o ./test/ft_calloc_test.o -c ./test/ft_calloc_test.c $(FLAGS)
 	@gcc		$(FLAGS) ./test/ft_calloc_test.o -I $(DIR) -L $(DIR) -lft
-	@echo		"$(L_YELLOWB)"RUN TEST: FT_ATOI "$(L_WHITE)"
+	@echo		"$(L_YELLOWB)"RUN TEST: FT_CALLOC "$(L_WHITE)"
+	@./a.out
+
+ft_split:
+	@cd 		$(DIR) && $(MAKE)
+	@cc 		-o ./test/ft_split_test.o -c ./test/ft_split_test.c $(FLAGS)
+	@gcc		$(FLAGS) ./test/ft_split_test.o -I $(DIR) -L $(DIR) -lft
+	@echo		"$(L_YELLOWB)"RUN TEST: FT_SPLIT "$(L_WHITE)"
 	@./a.out
