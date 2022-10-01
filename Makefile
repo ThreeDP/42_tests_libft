@@ -45,6 +45,13 @@ fclean: 	cleann
 re: fclean all
 
 ## Exemplo de test unico de função
+ft_addone:
+	@cd 		$(DIR) && $(MAKE)
+	@cc 		-o ./test/ft_addOne_test.o -c ./test/ft_addOne_test.c $(FLAGS)
+	@gcc		$(FLAGS) ./test/ft_addOne_test.o -I $(DIR) -L $(DIR) -lft
+	@echo		"$(L_YELLOWB)"RUN TEST: FT_ATOI "$(L_WHITE)"
+	@./a.out
+
 ft_atoi:
 	@cd 		$(DIR) && $(MAKE)
 	@cc 		-o ./test/ft_atoi_test.o -c ./test/ft_atoi_test.c $(FLAGS)
@@ -70,5 +77,12 @@ ft_split:
 	@cd 		$(DIR) && $(MAKE)
 	@cc 		-o ./test/ft_split_test.o -c ./test/ft_split_test.c $(FLAGS)
 	@gcc		$(FLAGS) ./test/ft_split_test.o -I $(DIR) -L $(DIR) -lft
+	@echo		"$(L_YELLOWB)"RUN TEST: FT_SPLIT "$(L_WHITE)"
+	@./a.out
+
+ft_strmapi:
+	@cd 		$(DIR) && $(MAKE)
+	@cc 		-o ./test/ft_strmapi_test.o -c ./test/ft_strmapi_test.c $(FLAGS)
+	@gcc		$(FLAGS) ./test/ft_strmapi_test.o -I $(DIR) -L $(DIR) -lft
 	@echo		"$(L_YELLOWB)"RUN TEST: FT_SPLIT "$(L_WHITE)"
 	@./a.out
