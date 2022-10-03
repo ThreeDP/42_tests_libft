@@ -90,8 +90,25 @@ MU_TEST_SUITE(test_strchr_look_up_character_in_null_string_should_return_null)
 	mu_assert(expected_result == actual_result, "expected_result should be NULL");
 }
 
+MU_TEST_SUITE(test)
+{
+	//ARRANGE
+	char		string[] = "tripouille";
+	int			character = 't' + 256;
+	char		*expected_result = "tripouille";
+	char		*actual_result;
+
+	//ACT
+	actual_result = ft_strchr(string, character);
+	printf("\n%c\n", character);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected_result should be NULL");
+}
+
 MU_TEST_SUITE(test_suite)
 {
+	MU_RUN_TEST(test);
     MU_RUN_TEST(test_strchr_look_up_non_existing_character_in_string_should_return_NULL);
 	MU_RUN_TEST(test_strchr_look_up_existing_character_in_string_should_return_its_address);
 	MU_RUN_TEST(test_strchr_look_up_null_character_in_string_should_return_the_terminating_zero_address);

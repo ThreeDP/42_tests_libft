@@ -59,6 +59,20 @@ ft_atoi:
 	@echo		"$(L_YELLOWB)"RUN TEST: FT_ATOI "$(L_WHITE)"
 	@./a.out
 
+ft_substr:
+	@cd 		$(DIR) && $(MAKE)
+	@cc 		-o ./test/ft_substr_test.o -c ./test/ft_substr_test.c $(FLAGS)
+	@gcc		$(FLAGS) ./test/ft_substr_test.o -I $(DIR) -L $(DIR) -lft
+	@echo		"$(L_YELLOWB)"RUN TEST: FT_SUBSTR "$(L_WHITE)"
+	@./a.out
+
+ft_strchr:
+	@cd 		$(DIR) && $(MAKE)
+	@cc 		-o ./test/ft_strchr_test.o -c ./test/ft_strchr_test.c $(FLAGS)
+	@gcc		$(FLAGS) ./test/ft_strchr_test.o -I $(DIR) -L $(DIR) -lft
+	@echo		"$(L_YELLOWB)"RUN TEST: FT_STRCHR "$(L_WHITE)"
+	@./a.out
+
 ft_itoa:
 	@cd 		$(DIR) && $(MAKE)
 	@cc 		-o ./test/ft_itoa_test.o -c ./test/ft_itoa_test.c $(FLAGS)
